@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+:root {
+  --preto: #000000;
+  --azul: #049CD8;
+  --amarelo: #FBD000;
+  --vermelho: #E52521;
+  --verde: #43B047;
+} 
+
+body {
+  background-image: url(./elementos/fundotijolo.png);
+  background-size: cover;  
+  background-repeat: no-repeat;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px; /* Cuidado, isso é bem pequeno! */
+  overflow: hidden; /* Evita scroll */
+  
+  /* --- MUDANÇA NO BODY --- */
+  /* A tarefa do body agora é SÓ centralizar a caixa .cadastro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Adicione isso para o alinhamento vertical funcionar */
+  min-height: 100vh; 
+  margin: 0;
+}
+
+/* --- NOVA REGRA PARA .cadastro --- */
+/* É ESTE o container que deve alinhar o Luigi e os Inputs */
+.cadastro {
+    display: flex;
+    align-items: center; /* Alinha o Luigi e a caixa de inputs verticalmente */
+    gap: 350px;        /* Cria um espaço entre eles */
+    
+    /* Opcional: adicione um padding para a borda que você vai colocar */
+    /* padding: 20px; */ 
+    
+}
+
+.luigi {
+  width: 300px;
+  height: auto;
+  image-rendering: pixelated; /* Dica: mantém o pixel-art nítido */
+   align-items: flex-end;
+   align-self: flex-end;
+ 
+}
+
+/* --- SEU CÓDIGO (ESTAVA CORRETO) --- */
+
+.inputs_cadastro {
+    display: flex;
+    flex-direction: column; /* Coloca os inputs um em cima do outro */
+    gap: 7px; /* Espaço entre os inputs */
+    align-items: center;
+}
+
+/* O input individual */
+.inputs_cadastro input {
+  width: 380px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  
+  /* Bônus: Estilo que combina com seu login */
+  background: #111;
+  border: 2px solid var(--vermelho);
+  color: white;
+  text-align: center;
+}
+
+.inputs_cadastro input::placeholder {
+    color: #888;
+}
+
+/* --- BÔNUS: CORREÇÃO DO SEU HTML --- */
+/* O <br> não é mais necessário por causa do 'gap' */
+/* E <h1><p>... é inválido. Mudei para <div> */
+
+.inputs_cadastro .texto-login {
+    font-size: 14px; /* Aumentei a fonte para ser legível */
+    color: white;
+    text-align: center;
+}
+.inputs_cadastro .clique {
+    color: var(--vermelho);
+    cursor: pointer;
+}
+.inputs_cadastro .clique:hover {
+    text-decoration: underline;
+}
+.inputs_cadastro img{
+  width: 250px;
+  gap: 20px;
+
+}
+.cadastro .luigi{
+  align-self: flex-end;
+}
+
+button {
+    /* 1. Definir o tamanho da imagem de fundo */
+    background-image: url(./elementos/Button\ Cadastrar.png);
+    background-size: contain; /* Garante que a imagem caiba inteira */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent; /* Remove cor de fundo padrão */
+
+    /* 2. Definir o tamanho do botão para corresponder à imagem */
+    /* Ajuste estes valores para o tamanho REAL da sua imagem de botão */
+    width: 250px;  /* (Exemplo) Ajuste para a largura da sua imagem */
+    height:50px; /* (Exemplo) Ajuste para a altura da sua imagem */
+
+    /* 3. Remover estilos que conflitam */
+    border: none;
+    padding: 0; /* REMOVIDO: O padding estava espremendo a imagem */
+    font-size: 0; /* REMOVIDO: Remove o texto "Login?" se houver */
+    color: transparent; /* Esconde o texto */
+    
+    cursor: pointer;
+}
+
+button:hover {
+    background-image: url(./elementos/Button\ CadastrarFrame.png.);
+}

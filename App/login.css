@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+:root {
+  --preto: #000000;
+  --azul: #049CD8;
+  --amarelo: #FBD000;
+  --vermelho: #E52521;
+  --verde: #43B047;
+}
+
+body {
+    background-color: var(--preto);
+    display: flex;
+    font-family: 'Press Start 2P', cursive;
+    /* --- PROPRIEDADES ADICIONADAS --- */
+    /* Para centralizar os dois blocos na tela */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: flex-end;     /* Centraliza verticalmente */
+    
+    /* Faz o body ocupar 100% da altura da tela */
+    min-height: 100vh;
+    
+    /* Um espaço entre a imagem do Mario e a caixa de login */
+    gap: 50px; 
+    height: 100vh; /* Trava a altura em 100% da tela */
+    
+    /* 2. Adicione esta linha para forçar a remoção do scroll */
+    overflow: hidden;
+  
+}
+
+/* --- ESTILOS DAS IMAGENS (Corrigido) --- */
+.mario-img {
+    width: 370px; /* Tamanho definido aqui */
+    height: auto; /* Mantém a proporção correta */
+    
+}
+
+.perfil-img {
+    width: 500px; /* Um tamanho menor, mais apropriado para um ícone */
+    height: auto;
+    margin-bottom: 20px; /* Espaço antes dos inputs */
+}
+
+
+/* --- CAIXA DE LOGIN (Corrigido) --- */
+.login {
+    background-image: url(./elementos/Group\ 6.png);
+    /* Adicione estas linhas para sua imagem de fundo funcionar bem */
+    background-size: cover;     /* Faz a imagem cobrir toda a div */
+    background-position: center;  /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetir a imagem */
+
+    height: 705px;
+    width: 650px; /* CORRIGIDO: Adicionado 'px' e ajustado para um tamanho melhor */
+
+    /* Faz os itens DENTRO da caixa de login se alinharem */
+    display: flex;
+    flex-direction: column;  /* Coloca um item abaixo do outro */
+    justify-content: center; /* Centraliza verticalmente (dentro da caixa) */
+    align-items: center;   /* Centraliza horizontalmente (dentro da caixa) */
+
+    /* Bônus: bordas arredondadas */
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box; /* Garante que o padding não altere o width/height */
+}
+
+.inputs_login {
+    text-align: center; /* Centraliza o botão e a mensagem de erro */
+}
+
+/* --- ESTILO BÔNUS PARA INPUTS E BOTÃO --- */
+.inputs_login input {
+    width: 280px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* --- BOTÃO COM IMAGEM (Correção Principal) --- */
+.inputs_login button {
+    /* 1. Definir o tamanho da imagem de fundo */
+    background-image: url(./elementos/Button\ Login.png);
+    background-size: contain; /* Garante que a imagem caiba inteira */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent; /* Remove cor de fundo padrão */
+
+    /* 2. Definir o tamanho do botão para corresponder à imagem */
+    /* Ajuste estes valores para o tamanho REAL da sua imagem de botão */
+    width: 250px;  /* (Exemplo) Ajuste para a largura da sua imagem */
+    height:50px; /* (Exemplo) Ajuste para a altura da sua imagem */
+
+    /* 3. Remover estilos que conflitam */
+    border: none;
+    padding: 0; /* REMOVIDO: O padding estava espremendo a imagem */
+    font-size: 0; /* REMOVIDO: Remove o texto "Login?" se houver */
+    color: transparent; /* Esconde o texto */
+    
+    cursor: pointer;
+}
+
+.inputs_login button:hover {
+    background-image: url(./elementos/Button\ Login\ Animation.png);
+    /* Mantém os outros estilos (size, repeat, etc.) */
+}
+
+
+.inputs_login h1{
+    font-size: 24px;
+}
+.clique{
+    cursor: pointer;
+}
+
+input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 2px solid var(--vermelho);
+      background: #111;
+      color: white;
+      text-align: center;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px #ffffff;
+    }
+input[type="number"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 2px solid var(--vermelho);
+      background: #111;
+      color: white;
+      text-align: center;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px #ffffff;
+    }
+
