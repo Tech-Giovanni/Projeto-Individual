@@ -11,7 +11,6 @@ body {
     background-color: var(--preto);
     display: flex;
     font-family: 'Press Start 2P', cursive;
-    /* --- PROPRIEDADES ADICIONADAS --- */
     /* Para centralizar os dois blocos na tela */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: flex-end;     /* Centraliza verticalmente */

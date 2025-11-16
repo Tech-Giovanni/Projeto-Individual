@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+:root {
+  --preto: #000000;
+  --azul: #049CD8;
+  --amarelo: #FBD000;
+  --vermelho: #E52521;
+  --verde: #43B047;
+}
+/*Para ver o quanto que está ocupando*/
+
+body{
+    background-color: var(--preto);
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+  
+}
+/*Header logo e a nav bar*/
+nav {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+.header{
+  flex-direction: row;
+  width: auto;
+  height: auto;
+}
+
+.logo{
+  width: 206px;
+  display: flex;
+  height: auto;
+}
+.menus{
+  background-image: url(./elementos/fundoHeader.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  height: auto;
+  margin: 0;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+/*Fim da header*/
+/*Main Inicio do site*/
+
+/*Banner*/
+.banner{
+  display: flex;
+  position: relative;
+
+}
+.slide-img{
+  width: 100%;
+  background-size: cover;
+  height: auto;
+  display: block;
+}
+.slogan{
+  position: absolute;
+  font-size: 18px;
+  top: 170px;
+  left: 30px;
+  right: auto;
+
+}
+.next{
+  position: absolute;
+  bottom: 160px;
+  left: 45%;
+  right: auto;
+}
+
+/*Fim do banner*/
+
+/*Franquia*/
+.franquia{
+  background-color: var(--azul);
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  display: block;
+}
+.titulo-franquia{
+ padding-left:150px;
+ top: 70px;
+ position: relative;
+ font-size: 25px;
+
+}
+.titulo-franquia-amarelo{
+  color: var(--amarelo);
+}
+
+.texto-fraquia-tamanho{
+ padding-left:150px;
+ top: 125px;
+ position: relative;
+ width: 860px;
+ height: auto;
+ text-align: justify;
+ font-size: 20px;
+}
+.foto{
+  width: 527px;
+  height: auto;
+  position: relative;
+  left: 275px;
+  top: 150px;
+}
+.evolucao{
+  background-color: var(--verde);
+  width: 100%;
+  position: absolute;
+}
