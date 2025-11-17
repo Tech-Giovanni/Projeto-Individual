@@ -1,120 +1,495 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/*paleta */
 :root {
   --preto: #000000;
-  --azul: #049CD8;
+  --azul: #115d7b;
   --amarelo: #FBD000;
-  --vermelho: #E52521;
-  --verde: #43B047;
+  --amarelo-fundo: #8c770f;
+  --vermelho: #81211f;
+  --verde: #306732;
 }
-/*Para ver o quanto que está ocupando*/
-
-body{
-    background-color: var(--preto);
-    margin: 0;
-    font-family: 'Press Start 2P', cursive;
-    color: white;
-  
+* {
+  box-sizing: border-box;
 }
-/*Header logo e a nav bar*/
-nav {
-    display: flex;
-    width: 100%;
-    height: auto;
-}
-.header{
-  flex-direction: row;
-  width: auto;
-  height: auto;
-}
-
-.logo{
-  width: 206px;
-  display: flex;
-  height: auto;
-}
-.menus{
-  background-image: url(./elementos/fundoHeader.png);
-  background-repeat: no-repeat;
-  background-size:cover;
-  height: auto;
+html, body {
+  background-color: var(--preto);
   margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+ 
+}
+html {
+  scroll-behavior: smooth;
+}
+/* --- HEADER --- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--vermelho);
+  border-end-end-radius: 30px;
+  border-end-start-radius:30px ;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+.header-transparente {
+  background-color: transparent;
+  
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
+}
+
+.logo {
+  width: 206px;
+  height: auto;
+}
+/* O container do menu (<ul>) */
+.menus {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%; /* Ocupa 70% da nav, em vez de 100% */
+  max-width: 2053px; /* Limite máximo */
+  height: auto;
   color: white;
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 30px; /* Espaço entre os links */
   justify-content: center;
   align-items: center;
+  list-style: none;
+  padding: 15px;
+  margin: 0;
 }
-/*Fim da header*/
-/*Main Inicio do site*/
-
-/*Banner*/
-.banner{
+.menus li {
+  padding: 5px;
+}
+.menus a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+/* --- BANNER --- */
+.banner {
   display: flex;
   position: relative;
-
-}
-.slide-img{
   width: 100%;
-  background-size: cover;
+}
+.slide-img {
+  width: 100%;
   height: auto;
   display: block;
 }
-.slogan{
+
+.slogan {
   position: absolute;
   font-size: 18px;
-  top: 170px;
-  left: 30px;
-  right: auto;
-
+  top: 30%;
+  left: 5%;
 }
-.next{
+
+.next {
   position: absolute;
   bottom: 160px;
-  left: 45%;
-  right: auto;
+  left: 50%; /* Centraliza */
+  transform: translateX(-50%); /* Ajuste fino da centralização */
 }
 
-/*Fim do banner*/
-
-/*Franquia*/
-.franquia{
+/* --- FRANQUIA (A GRANDE MUDANÇA) --- */
+.franquia {
   background-color: var(--azul);
   width: 100%;
-  height: auto;
-  background-size: cover;
-  display: block;
+  padding: 80px 5%;
+  display: flex; /* Organiza o texto e a foto */
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap; 
 }
-.titulo-franquia{
- padding-left:150px;
- top: 70px;
- position: relative;
- font-size: 25px;
 
+.franquia-conteudo {
+  flex: 1; /* Ocupa o espaço disponível (aprox. 50%) */
+  min-width: 300px; /* Largura mínima antes de quebrar */
 }
-.titulo-franquia-amarelo{
+
+.franquia-foto {
+  flex: 1; /* Ocupa o espaço disponível (aprox. 50%) */
+  text-align: center; /* Centraliza a foto */
+  min-width: 300px;
+}
+
+.titulo-franquia {
+  font-size: 25px;
+  margin-bottom: 30px; /* Espaço entre título e texto */
+}
+
+.titulo-franquia-amarelo {
   color: var(--amarelo);
 }
 
-.texto-fraquia-tamanho{
- padding-left:150px;
- top: 125px;
- position: relative;
- width: 860px;
- height: auto;
- text-align: justify;
- font-size: 20px;
-}
-.foto{
-  width: 527px;
+.texto-fraquia-tamanho {
+  width: 100%; /* Ocupa 100% do pai (.franquia-conteudo) */
+  max-width: 860px; /* Limite máximo */
   height: auto;
-  position: relative;
-  left: 275px;
-  top: 150px;
+  text-align: justify;
+  font-size: 20px;
+  line-height: 1.5;
 }
-.evolucao{
+
+.foto {
+  width: 100%; /* Imagem preenche o container .franquia-foto */
+  max-width: 527px; /* Limite máximo */
+  height: auto;
+}
+
+/* --- TRANSIÇÃO DO CANO --- */
+.cano-transition {
+  background-image: linear-gradient(var(--azul) 50%, var(--verde) 50%);
+  display: flex; /* Para centralizar o cano */
+  justify-content: center;
+  padding: 30px 0; /* Espaço para o cano "respirar" */
+}
+
+.canos {
+  width: 250px;
+}
+
+/* --- EVOLUÇÃO --- */
+.evolucao {
   background-color: var(--verde);
   width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Empilha o texto e a linha */
+  align-items: center; /* Centraliza tudo */
+  padding: 50px 2%; /* Espaço interno */
+}
+
+.textos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  margin-bottom: 50px; /* Espaço entre o texto e a linha do tempo */
+}
+
+.titulo-evolucao {
+  font-size: 25px;
+}
+
+.texto-evolucao-tamanho {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  text-align: justify;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.linha-evolucao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.baloes-container {
+  display: flex;
+  justify-content: center;
+  gap: 90px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.balao {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.balao-fundo {
+  width: 100%;
+  height: 100%;
+}
+
+.balao-personagem {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: auto;
+}
+
+.wonder {
+  width: 80% !important;
+}
+
+.linha-tempo {
+  width: 100%;
+  max-width: 685px;
+  height: auto;
+  margin-top: 30px; /* Espaço entre balões e linha */
+}
+
+/* --- GAME (DESAFIO) --- */
+/*GAME*/
+.game{
+  background-color: var(--vermelho);
+  width: 100%;
+  overflow: hidden; 
+}
+
+.titulo-game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* Adicionei padding aqui para que o título não encoste nas bordas */
+  padding: 0 5%; 
+}
+
+.titulo-game-h1{
+  font-size: 60px;
+}
+
+.logo-bowser{
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+}
+
+.desafio-container{
+  display: flex; 
+  gap: 30px;
+  flex-wrap: wrap; 
+  margin-top: 50px;
+  justify-content: flex-start; 
+}
+
+.figura-mario {
+  width: 40%; /* Ajuste a largura do container do Mario aqui (ex: 40%, 50%) */
+  min-width: 300px; /* Largura mínima para o Mario */
+
+ 
+}
+
+.mariofogo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.paragrafo {
+  flex: 1; /* Permite que o parágrafo ocupe o restante do espaço */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-width: 300px; /* Largura mínima para o parágrafo */
+  
+  /* Adicionei padding-right para que o parágrafo não encoste na borda direita */
+  padding-right: 5%; 
+}
+
+.botao-game {
+  background-image: url(./elementos/Button\ Jogar.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left; 
+  background-color: transparent;
+  width: 100%;
+  max-width: 350px; 
+  height: 100px;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  outline: none; 
+  display: block;
+  cursor: pointer;
+}
+
+.botao-game:hover {
+  background-image: url(./elementos/Button\ Jogar\ frame.png);
+}
+/* --- DESENVOLVEDOR --- */
+.desenvolvedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--amarelo-fundo);
+  padding: 80px 5%;
+}
+
+.conteudo-desenvolvedor {
+  width: 100%;
+  max-width: 900px; /* Limita a largura do conteúdo */
+}
+
+.paragrafo-desenvolvedor {
+  text-align: justify;
+  width: 100%; /* Ocupa 100% do pai */
+  line-height: 1.5;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.images-me {
+  display: flex;
+  gap: 15px;
+}
+
+.images-me img {
+  width: 200px;
+  height: auto;
+}
+
+/* --- FOOTER --- */
+.footer-site {
+  background-color: var(--vermelho);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinha pelo topo */
+  justify-content: space-around; /* Espaça os 3 blocos */
+  flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+  padding: 40px 2%;
+  gap: 40px; /* Espaço entre os blocos quando eles quebram */
+  min-height: 250px;
+  position: relative;
+}
+
+.autoria {
+  text-align: center;
+}
+
+.logo-footer {
+  width: 285px;
+  padding: 20px;
+}
+
+.autoria p {
+  font-size: 18px;
+  text-align: center;
+}
+
+.indice-geral {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 80px; /* Espaço entre as 3 colunas */
+  flex-wrap: wrap;
+}
+
+/* Coluna de Links (1 e 2) */
+.indice-geral > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  font-size: 14px;
+}
+
+/* Coluna de Contatos (3) */
+.contatos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* Cada linha de contato (ícone + texto) */
+.contact-container div {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alinha ícone e texto */
+  gap: 10px;
+}
+
+.contact-container h5 {
+  margin: 0; /* Remove margem padrão do h5 */
+  font-size: 12px;
+}
+
+.social-line {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+/* Ícones do footer (tamanho corrigido) */
+.contatos img {
+  width: 24px;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+} 
+.decoracao{
+  width: 250px; 
+  height: auto;
+
+  /* --- POSICIONAMENTO --- */
+  position: absolute; 
+  bottom: 0;          
+  right: 0;            /
+  
+}
+/*animações de botão*/
+.menus a,
+.botao-game,
+.indice-geral a,
+.social-line a{
+  transition: transform 0.2s ease-in-out;
+  display: block;
+}
+.menus a:hover,
+.botao-game:hover,
+.indice-geral a:hover,
+.social-line a:hover,
+.next a:hover {
+  transform: scale(1.05); 
+}
+.next a{
+  transition: transform 0.2s ease-in-out;
+  display: block; 
+}
+.next a:hover{
+  transform: scale(2.08);
+}
+/* O "QUADRO" (O PAI) */
+.balao {
+  position: relative; 
+  width: 200px; 
+  height: 200px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+.balao:hover {
+  transform: scale(1.05); /* Zoom no balão todo */
+}
+
+.balao-fundo {
+  width: 100%;
+  height: 100%;
+}
+.balao-personagem{
+  transition: transform 0.2s ease-in-out;
+}
+.balao:hover{
+  transform: scale(1.05);
 }

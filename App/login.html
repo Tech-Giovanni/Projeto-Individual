@@ -7,23 +7,26 @@
     <title>Login</title>
 </head>
 <body>
-    
     <div class="mario">
         <img src="./elementos/MarioLogin.png" alt="Mario" class="mario-img">
     </div>
 
     <div class="login">
-        
         <img src="../Logo/Perfil.png" alt="Perfil" class="perfil-img">
-        
+         <h1 class="titulo">Cadastre-se para Jogar!</h1>
         <div class="inputs_login">
-            <input type="text" id="input_email" placeholder="Email"> <br><br>
-            <input type="text" id="input_senha" placeholder="Password"><br><br>
-            <button onclick="entrar()">Login?</button><br><br>
-            <h1><p style="color: white;"> Não é cadastrado? </p><p class="clique" style="color: #E52521;">Clique aqui!</p> </h1>
-            <div id="mensagem"></div>
-        </div>
+    <input type="text" id="input_email" placeholder="Email"> <br><br>
+    <input type="text" id="input_senha" placeholder="Password"><br><br>
+    
+    <button onclick="entrar()">Login?</button><br><br>
+
+    <div class="texto-cadastro">
+        <span style="color: white;"> Não é cadastrado? </span>
+        <a href="./cadastro.html" class="clique" style="color: #E52521;">Clique aqui!</a>
     </div>
+
+    <div id="mensagem"></div>
+</div>
 
 </body>
 </html>

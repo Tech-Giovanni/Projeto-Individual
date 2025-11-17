@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,70 +8,171 @@
     <title> Mario's Memories</title>
 </head>
 <body>
-    <!--Header-->
-    <div class="header">
+
+    <header class="header">
         <nav>
             <div class="logo-header">
-                <img src="../Logo/Perfil.png" class="logo">
+                <img src="../Logo/Perfil.png" class="logo" alt="Logo Mario's Memories">
             </div>
-            <div class="menus">
-            <ul class="menus-titulos">ENTRAR</ul>
-            <ul class="menus-titulos">FRANQUIA</ul>
-            <ul class="menus-titulos">LINHA TEMPORAL</ul>
-            <ul class="menus-titulos">GAME</ul>
-            <ul class="menus-titulos">DESENVOLVEDOR</ul>
-            </div>
+            <ul class="menus">
+                <li><a href="./login.html">ENTRAR</a></li>
+                <li><a href="#franquia">FRANQUIA</a></li>
+                <li><a href="#evolucao">LINHA TEMPORAL</a></li>
+                <li><a href="#game">GAME</a></li>
+                <li><a href="#dev">DESENVOLVEDOR</a></li>
+            </ul>
         </nav>
-    </div>
-        <!--Fim da header-->
+    </header>
 
-        <!--Conteudo geral-->
     <main>
+
+        <section class="banner" id="login">
+            <div class="slogan">
+                <h1>Conheça Super Mario!</h1>
+            </div>
+            <img src="./img/batalha.png" class="slide-img" alt="Batalha Mario vs Bowser">
+            <div class="next"><a href="#franquia">NEXT LEVEL V</a></div>
+        </section>
         
-        <div class="banner">
-            <div class="slogan"><h1>Conheça Super Mario!</h1></div>
-            <img src="./img/batalha.png" class="slide-img">
-            <div class="next">NEXT LEVEL V</div>
+        <section class="franquia" id="franquia">
+            <div class="franquia-conteudo">
+                <div class="titulo-franlass="titulo-franquia-amarelo">O que é</span></h1>
+                </div>
+                <div class="texto-fraqquia">
+                    <h1> Super Mario? <span cuia">
+                    <p class="texto-fraquia-tamanho">Super Mario é uma série de jogos eletrônicos de plataforma
+                        criada pela Nintendo, estrelada pelo personagem de videogame mais famoso do mundo, Mario.
+                        A série, também conhecida como Super Mario Bros., é centrada nas aventuras de um encanador
+                        italiano que deve resgatar a Princesa Peach do vilão Bowser.</p>
+                </div>
+            </div>
+            <div class="franquia-foto">
+                <img src="./elementos/foto.png" class="foto" alt="Personagens Mario">
+            </div>
+        </section>
+        
+        <div class="cano-transition">
+            <img src="./elementos/canos.png"  class="canos" alt="Canos do Mario" >
         </div>
-        <div class="franquia">
-            <div class="titulo-franquia"><h1>O que é <div class="titulo-franquia-amarelo"> Super Mario?</h1></div>
-            <div class="texto-fraquia"><p class="texto-fraquia-tamanho">Super Mario é uma série de jogos eletrônicos de plataforma 
-                criada pela Nintendo, estrelada pelo personagem de videogame mais famoso do mundo, Mario. 
-                A série, também conhecida como Super Mario Bros., é centrada nas aventuras de um encanador
-                italiano que deve resgatar a Princesa Peach do vilão Bowser.</p>
-            </div>
-            <div class="foto-franquia">
-                <img src="./elementos/foto.png" class="foto">
-            </div>
-            <div class="cano-transition">
-                <img src="./elementos/canos.png" class="canos">
-            </div>
-        <!--Fim da franquia-->
-
-            <section class="evolucao">
-                <div class="titulo-evolucao"><h1>Evolução do Jogo</h1></div>
-                <div class="texto-evolucao"><p class="texto-evolucao-tamanho">
-                    Conheça como a franquia foi evoluindo ao longo do tempo! Aqui estão alguns que  tiveram mais destaque em suas decádas
-                </p>
+        
+        <section class="evolucao" id="evolucao">
+            <div class="textos">
+                <div class="titulo-evolucao">
+                    <h1>Evolução do Jogo</h1>
+                </div>
+                <div class="texto-evolucao">
+                    <p class="texto-evolucao-tamanho">
+                        Conheça como a franquia foi evoluindo ao longo do tempo!
+                        Aqui estão alguns jogos que tiveram mais destaque em suas decádas.
+                    </p>
+                </div>
             </div>
 
+            <div class="linha-evolucao">
+                <div class="baloes-container">
+                    <div class="balao">
+                        <img src="./elementos/Balão.png" class="balao-fundo" alt="Balão de fala">
+                        <img src="./elementos/pixmario.gif" class="balao-personagem" alt="Mario 8-bit gif">
+                    </div>
+                    <div class="balao">
+                        <img src="./elementos/Balão.png" class="balao-fundo" alt="Balão de fala">
+                        <img src="./elementos/yoshi.gif" class="balao-personagem" alt="Yoshi gif">
+                    </div>
+                    <div class="balao">
+                        <img src="./elementos/Balão.png" class="balao-fundo" alt="Balão de fala">
+                        <img src="./elementos/jump.png" class="balao-personagem wonder" alt="Mario Wonder">
+                    </div>
+                </div>
+                <div class="linha">
+                    <img src="./elementos/Linha.png" class="linha-tempo" alt="Linha do tempo">
+                </div>
+            </div>
+        </section>
 
+        <section class="game" id="game">
+            <div class="titulo-game">
+                <img src="./elementos/logobowser.png" class="logo-bowser" alt="Logo Bowser">
+                <h1 class="titulo-game-h1">DESAFIO!</h1>
+            </div>
+            <div class="desafio-container">
+                <div class="figura-mario">
+                    <img src="./elementos/smash.png" class="mariofogo" alt="Mario Fogo">
+                </div>
+                <div class="paragrafo">
+                    <div class="texto-desafio">
+                        <h2>Você encara o desafio?</h2>
+                    </div>
+                    <div class="texto-desafio">
+                        <h2>Ajude Mario no Desafio do Jogo da Memória de <span style="color: #E52521;">Bowser!</span></h2>
+                    </div>
+                    <button class="botao-game">
+                        <a href="./login.html" class="botao-game"></a>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-            </section>
-
-        </div>
-        </div>
-
-
-
-
-
-
-
-
+        <section class="desenvolvedor" id="dev">
+            <div class="conteudo-desenvolvedor">
+                <div class="titulo">
+                    <h1>Desenvolvedor:</h1>
+                </div>
+                <div class="paragrafo-desenvolvedor">
+                    <p>Meu nome Giovanni Angel, desenvolvi esse projeto “Mario’s Memories” por que é uma 
+                        forma de como expressar meu lado fanático voltado ao amor que eu tenho pelos jogos 
+                        da franquia de Super Mario e não apenas para compartilhar com a faculdade, mas para 
+                        comunidade que também aprecia o mesmo conteúdo, trazendo uma 
+                        imensa nostalgia aos fãs da franquia.
+                    </p>
+                </div>
+                <div class="images-me">
+                    <img src="./elementos/exp 1.png" alt="Foto do Desenvolvedor">
+                    
+                </div>
+            </div>
+        </section>
+        
     </main>
 
-
-
+    <footer class="footer-site">
+        <div class="autoria">
+            <img src="../Logo/Perfil.png" class="logo-footer" alt="Logo Mario's Memories">
+            <p>©Giovanni Angel</p>
+        </div>
+        <div class="indice-geral">
+            <div>
+                <a href="#login">Início</a>
+                <a href="#franquia">Franquia</a>
+                <a href="#evolucao">Evolução</a>
+            </div>
+            <div>
+                <a href="#game">GAME</a>
+                <a href="#dev">DESENVOLVEDOR</a>
+            </div>
+            <div class="contatos">
+                <div class="contact-container">
+                    <div>
+                        <img class="email-icon" src="./icons/email.png" alt="Email">
+                        <h5><a href="mailto:giovanni.chambi@sptech.school">giovanni.chambi@sptech.school</a></h5>
+                    </div>
+                    <div>
+                        <img class="contact-icon" src="./icons/telefone.png" alt="Telefone">
+                        <h5>(11) 96254-5698</h5>
+                    </div>
+                    <div>
+                        <img class="adress-icon" src="./icons/local.png" alt="Endereço">
+                        <h5>Rua da Gavéa - São Paulo - SP, 02121-020</h5>
+                    </div>
+                </div>
+                <div class="social-line">
+                    <a href="https://github.com/Tech-Giovanni/Projeto-Individual.git" target="_blank"><img src="./icons/git.png" alt="GitHub"></a>
+                    <a href="" target="_blank"><img src="./icons/linkedin.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+        <img src="./elementos/nivel.png"class="decoracao">
+    </footer>
+<script src="home.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </body>
 </html>
