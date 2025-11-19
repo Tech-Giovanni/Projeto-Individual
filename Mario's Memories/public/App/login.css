@@ -13,11 +13,14 @@ body {
     justify-content: center;
     align-items: flex-end;
     min-height: 100vh;
-    gap: 50px; 
+    gap: 40px; 
     height: 100vh;
     overflow: hidden;
 }
 
+.titulo{
+    font-size: 22px;
+}
 .mario-img {
     width: 370px;
     height: auto; 
@@ -41,6 +44,8 @@ body {
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
+    position: relative;
+    bottom: 20px;
 }
 
 .inputs_login {
@@ -88,6 +93,7 @@ body {
 .clique:hover{
     transform: scale(1.09);
 }
+/*Estilização das inputs*/
 input[type="text"] {
       width: 80%;
       padding: 10px;
@@ -104,7 +110,7 @@ input[type="text"] {
       border-color: #ffffff;
       box-shadow: 0 0 10px #ffffff;
     }
-input[type="number"] {
+input[type="password"] {
       width: 80%;
       padding: 10px;
       font-size: 14px;
@@ -114,7 +120,7 @@ input[type="number"] {
       color: white;
       text-align: center;
     }
-    input[type="number"]:focus {
+    input[type="password"]:focus {
       outline: none;
       border-color: #ffffff;
       box-shadow: 0 0 10px #ffffff;

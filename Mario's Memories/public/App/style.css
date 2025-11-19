@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
 /*paleta */
 :root {
   --preto: #000000;
@@ -50,17 +49,17 @@ nav {
   width: 206px;
   height: auto;
 }
-/* O container do menu (<ul>) */
+/*style do menu */
 .menus {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%; /* Ocupa 70% da nav, em vez de 100% */
-  max-width: 2053px; /* Limite máximo */
+  width: 100%; 
+  max-width: 2053px; 
   height: auto;
   color: white;
   display: flex;
   flex-direction: row;
-  gap: 30px; /* Espaço entre os links */
+  gap: 30px; 
   justify-content: center;
   align-items: center;
   list-style: none;
@@ -97,35 +96,35 @@ nav {
 .next {
   position: absolute;
   bottom: 160px;
-  left: 50%; /* Centraliza */
-  transform: translateX(-50%); /* Ajuste fino da centralização */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* --- FRANQUIA (A GRANDE MUDANÇA) --- */
+/*FRANQUIA*/
 .franquia {
   background-color: var(--azul);
   width: 100%;
   padding: 80px 5%;
-  display: flex; /* Organiza o texto e a foto */
+  display: flex;
   align-items: center;
   gap: 50px;
   flex-wrap: wrap; 
 }
 
 .franquia-conteudo {
-  flex: 1; /* Ocupa o espaço disponível (aprox. 50%) */
-  min-width: 300px; /* Largura mínima antes de quebrar */
+  flex: 1;
+  min-width: 300px; 
 }
 
 .franquia-foto {
-  flex: 1; /* Ocupa o espaço disponível (aprox. 50%) */
-  text-align: center; /* Centraliza a foto */
+  flex: 1;
+  text-align: center;
   min-width: 300px;
 }
 
 .titulo-franquia {
   font-size: 25px;
-  margin-bottom: 30px; /* Espaço entre título e texto */
+  margin-bottom: 30px;
 }
 
 .titulo-franquia-amarelo {
@@ -133,8 +132,8 @@ nav {
 }
 
 .texto-fraquia-tamanho {
-  width: 100%; /* Ocupa 100% do pai (.franquia-conteudo) */
-  max-width: 860px; /* Limite máximo */
+  width: 100%; 
+  max-width: 860px;
   height: auto;
   text-align: justify;
   font-size: 20px;
@@ -142,34 +141,31 @@ nav {
 }
 
 .foto {
-  width: 100%; /* Imagem preenche o container .franquia-foto */
-  max-width: 527px; /* Limite máximo */
+  width: 100%;
+  max-width: 527px;
   height: auto;
 }
 
-/* --- TRANSIÇÃO DO CANO --- */
+/*cano*/
 .cano-transition {
   background-image: linear-gradient(var(--azul) 50%, var(--verde) 50%);
-  display: flex; /* Para centralizar o cano */
+  display: flex;
   justify-content: center;
-  padding: 30px 0; /* Espaço para o cano "respirar" */
+  padding: 30px 0;
 }
-
 .canos {
   width: 250px;
 }
-
-/* --- EVOLUÇÃO --- */
+/*evolução*/
 .evolucao {
   background-color: var(--verde);
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column; /* Empilha o texto e a linha */
-  align-items: center; /* Centraliza tudo */
-  padding: 50px 2%; /* Espaço interno */
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 2%;
 }
-
 .textos {
   display: flex;
   flex-direction: column;
