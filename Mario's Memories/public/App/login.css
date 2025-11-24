@@ -130,3 +130,16 @@ input[type="password"] {
     text-align: center;
 }
 
+.voltar-site{
+    margin: 30px;
+}
+.voltar-site a{
+    text-decoration: none;
+    color: var(--amarelo);
+    transition: transform 0.2s ease-in-out;
+}
+.voltar-site a:hover{
+    text-decoration: none;
+    color: var(--verde);
+    transform: scale(1.09);
+}

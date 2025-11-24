@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
+    
     <title>Login</title>
 </head>
 <body>
@@ -24,6 +25,9 @@
         <span style="color: white;"> Não é cadastrado? </span>
         <a href="./cadastro.html" class="clique" style="color: #E52521;">Clique aqui!</a>
     </div>
+    <div class="voltar-site">
+        <a href="./Site.html">Voltar</a>
+    </div>
 
     <div id="mensagem"></div>
 </div>
@@ -34,6 +38,9 @@
 <script>
 
     function entrar(){
+
+            var emailVar = input_email.value;
+            var senhaVar = input_senha.value;
 
             fetch("/usuarios/autenticar", {
             method: "POST",
@@ -56,10 +63,9 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "/dashboard/jogo.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

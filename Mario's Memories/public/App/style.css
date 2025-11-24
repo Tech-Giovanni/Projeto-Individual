@@ -110,18 +110,15 @@ nav {
   gap: 50px;
   flex-wrap: wrap; 
 }
-
 .franquia-conteudo {
   flex: 1;
   min-width: 300px; 
 }
-
 .franquia-foto {
   flex: 1;
   text-align: center;
   min-width: 300px;
 }
-
 .titulo-franquia {
   font-size: 25px;
   margin-bottom: 30px;
@@ -154,7 +151,7 @@ nav {
   padding: 30px 0;
 }
 .canos {
-  width: 250px;
+  width: 200px;
 }
 /*evolução*/
 .evolucao {
@@ -164,27 +161,24 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 2%;
 }
 .textos {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 40px;
-  margin-bottom: 50px; /* Espaço entre o texto e a linha do tempo */
 }
 
 .titulo-evolucao {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .texto-evolucao-tamanho {
   width: 100%;
-  max-width: 860px;
+  max-width: 760px;
   height: auto;
   text-align: justify;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 1.5;
 }
 
@@ -231,15 +225,14 @@ nav {
   width: 100%;
   max-width: 685px;
   height: auto;
-  margin-top: 30px; /* Espaço entre balões e linha */
+  margin-top: 30px; 
 }
-
-/* --- GAME (DESAFIO) --- */
 /*GAME*/
 .game{
   background-color: var(--vermelho);
   width: 100%;
   overflow: hidden; 
+  font-size: 15px;
 }
 
 .titulo-game{
@@ -247,7 +240,6 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  /* Adicionei padding aqui para que o título não encoste nas bordas */
   padding: 0 5%; 
 }
 
@@ -270,12 +262,9 @@ nav {
 }
 
 .figura-mario {
-  width: 40%; /* Ajuste a largura do container do Mario aqui (ex: 40%, 50%) */
-  min-width: 300px; /* Largura mínima para o Mario */
-
- 
+  width: 40%;
+  min-width: 300px;
 }
-
 .mariofogo {
   width: 100%;
   height: auto;
@@ -283,16 +272,13 @@ nav {
 }
 
 .paragrafo {
-  flex: 1; /* Permite que o parágrafo ocupe o restante do espaço */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  min-width: 300px; /* Largura mínima para o parágrafo */
-  
-  /* Adicionei padding-right para que o parágrafo não encoste na borda direita */
+  min-width: 300px;
   padding-right: 5%; 
 }
-
 .botao-game {
   background-image: url(./elementos/Button\ Jogar.png);
   background-repeat: no-repeat;
@@ -313,7 +299,7 @@ nav {
 .botao-game:hover {
   background-image: url(./elementos/Button\ Jogar\ frame.png);
 }
-/* --- DESENVOLVEDOR --- */
+/*DESENVOLVEDOR*/
 .desenvolvedor {
   display: flex;
   justify-content: center;
@@ -325,24 +311,26 @@ nav {
 
 .conteudo-desenvolvedor {
   width: 100%;
-  max-width: 900px; /* Limita a largura do conteúdo */
+  max-width: 900px;
+  
 }
 
 .paragrafo-desenvolvedor {
   text-align: justify;
-  width: 100%; /* Ocupa 100% do pai */
+  width: 100%;
   line-height: 1.5;
   font-size: 16px;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }
 
-.images-me {
+.me {
   display: flex;
   gap: 15px;
-}
-
-.images-me img {
-  width: 200px;
+  width: 150px;
+  border-radius: 400px;
   height: auto;
 }
 

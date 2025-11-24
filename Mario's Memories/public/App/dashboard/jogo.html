@@ -1,35 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./jogo.css">
+    <script src="../js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Jogo da Memória</title>
 </head>
-<body> <aside class="barra-jogo">
+
+<body>
+    <aside class="barra-jogo">
         <nav class="topicos">
             <ul class="indices">
-                <li>Jogo</li>
-                <li>Pontuação</li>
-                <li>Instruções!</li>
+                <button onclick="telaJogo()">Jogo</button>
+                <button onclick="telaPontuacao()">Pontuação</button>
+                <button onclick="telaInstrucao()">Instruções</button>
             </ul>
         </nav>
-        
+
         <div class="voltar">
             <a href="../Site.html">Sair</a>
         </div>
     </aside>
 
-    <main class="area-jogo">
-        <div class="grid-cartas">
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
-            <div class="carta"><img src="../elementos/cartaBowser.png"></div>
+    <section class="area-jogo" id="area_jogo">
+        <h1>Cassino Bowser</h1>
+        <div class="game">
+        <div class="slot"><img id="img1" src="../elementos/flower.png" class="power-up"></div>
+        <div class="slot"><img id="img2" src="../elementos/murshroom.png" class="power-up"></div>
+        <div class="slot"><img id="img3" src="../elementos/star.png" class="power-up"></div>
         </div>
-    </main>
+        <button onclick="jogar()" class="rodar">TENTAR A SORTE</button>
+        <div id="resultado"></div>
+    </section>
+
+    <section class="pontuacao-geral" id="pontuacao_geral">
+        <div class="pontuacao">
+            <div class="titulo-topo">
+                <h1 class="titulo-pontuacao">Estatísticas:</h1>
+            </div>
+            <div class="pontuação">
+                <h1>Pontuação Total: <div id="pontuação_total"></div>
+                </h1>
+                <h3>Fase 1: <div id="pontuação_fase1"></div>
+                </h3>
+                <h3>Fase 2: <div id="pontuação_fase2"></div>
+                </h3>
+                <h3>Fase 3: <div id="pontuação_fase3"></div>
+                </h3>
+                <div class="dash">DESEMPENHO:
+                   <canvas id="barra"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="cartas_combinadas">
+            <div id="cartas_combinadas"></div>
+        </div>
+      
+    </section>
+
+    <section class="instrucoes">
+        <h1>Como jogar?</h1>
+
+    </section>
 
 </body>
+
 </html>
+
+<script>
+    var divJogo = document.getElementById("area_jogo");
+    var divPontuacao = document.getElementById("pontuacao_geral");
+    var divInstrucoes = document.querySelector(".instrucoes");
+
+   var lista = [
+        "../elementos/flower.png",
+        "../elementos/murshroom.png", 
+        "../elementos/star.png"
+    ];
+    
+    var intervalo;
+
+    function jogar() {
+        var botao = document.querySelector('.rodar');
+        var divRes = document.getElementById('resultado');
+        
+        botao.disabled = true;
+        divRes.innerHTML = "Rodando...";
+        divRes.style.fontSize = "24px"
+
+        intervalo = setInterval(function() {
+        
+            document.getElementById('img1').src = lista[Math.floor(Math.random() * 3)];
+            document.getElementById('img2').src = lista[Math.floor(Math.random() * 3)];
+            document.getElementById('img3').src = lista[Math.floor(Math.random() * 3)];
+        }, 100); 
+
+        setTimeout(function() {
+            pararRoleta();
+        }, 2000); 
+    }
+    function pararRoleta() {
+        clearInterval(intervalo);
+
+        var n1 = Math.floor(Math.random() * 3);
+        var n2 = Math.floor(Math.random() * 3);
+        var n3 = Math.floor(Math.random() * 3);
+
+        document.getElementById('img1').src = lista[n1];
+        document.getElementById('img2').src = lista[n2];
+        document.getElementById('img3').src = lista[n3];
+
+        document.querySelector('.rodar').disabled = false;
+
+        var divRes = document.getElementById('resultado');
+
+        if (n1 == n2 && n2 == n3){
+            divRes.innerHTML = "PARABÉNS! VOCÊ GANHOU!";
+            divRes.style.color = "blue";
+            divRes.style.fontSize= "50px"
+        } else {
+            divRes.innerHTML = "Não foi dessa vez...";
+            divRes.style.color = "red";
+        }
+    }
+    function telaJogo() {
+        divJogo.style.display = 'flex';
+        divPontuacao.style.display = 'none';
+        divInstrucoes.style.display = 'none';
+    }
+    function telaPontuacao() {
+        divJogo.style.display = 'none';
+        divPontuacao.style.display = 'flex';
+        divInstrucoes.style.display = 'none';
+    }
+    function telaInstrucao() {
+        divJogo.style.display = 'none';
+        divPontuacao.style.display = 'none';
+        divInstrucoes.style.display = 'flex';
+    }
+
+    function obterDados() {
+        // Aqui seria a função que obteria os dados do banco de dados
+        // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+
+        // fetch('/obterDados')
+        // .then(function(response){
+        //   return response.json();
+        // })
+        // .then(function(data){
+        //   plotarGraficoLinha(data);
+        //   plotarGraficoBarra(data);
+        // })
+        // .catch(function(err){
+        //   console.log(err);
+        // })
+
+        // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
+        var dados = [{
+            jogador: 'Rodada 1',
+            votos: 10
+        },
+        {
+            jogador: 'Rodada 2',
+            votos: 20
+        },
+        {
+            jogador: 'Rodada 3',
+            votos: 25
+        },
+        {
+            jogador: 'TOTAL',
+            votos: 55
+        }]
+
+        // Chamando a função para plotar o gráfico de barra com os dados
+        plotarGraficoBarra(dados)
+    }
+
+    function plotarGraficoBarra(dados) {
+
+        var votos = [];
+        var jogadores = [];
+
+        // Preenchendo os arrays com os dados
+        for (var i = 0; i < dados.length; i++) {
+            votos.push(dados[i].votos);
+            jogadores.push(dados[i].jogador);
+        }
+
+        // Capturando o elemento canvas pelo id 
+        var ctx = document.getElementById('barra').getContext('2d');
+        // Criando o gráfico de barra usando o Chart.js
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico: barra
+            data: { // Dados para o gráfico
+                labels: jogadores, // Rótulos no eixo X
+                datasets: [{
+                    label: 'Votos', // Nome do conjunto de dados
+                    data: votos, // Dados dos votos
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)', // Cor da borda das barras
+                    ],
+                    borderWidth: 1 // Largura da borda das barras
+                }]
+            },
+        });
+    }
+</script>

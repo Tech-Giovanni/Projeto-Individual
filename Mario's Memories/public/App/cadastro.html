@@ -22,6 +22,9 @@
                 <span style="color: white;"> Já tem uma conta? </span><a href="./login.html" class="clique"
                     style="color: #E52521;">Faça o login aqui!</a>
             </div>
+            <div class="voltar-site">
+                <a href="./Site.html">Voltar</a>
+            </div>
             <div id="mensagem"></div>
         </div>
 
@@ -37,6 +40,8 @@
         var nomeVar = input_user.value;
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
+
+        
 
         fetch("/usuarios/cadastrar", {
             method: "POST",
