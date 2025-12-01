@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="./jogo.css">
     <script src="../js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Jogo da Memória</title>
+    <script src="../js/dash.js"></script>
+
+    <title>Quiz Mario</title>
 </head>
 
-<body>
+<body onload="carregarDash()">
     <aside class="barra-jogo">
+        <div>OLÁ,<div id="nome_logado" style="color: #FBD000;"></div> </div>
         <nav class="topicos">
             <ul class="indices">
                 <button onclick="telaJogo()">Jogo</button>
@@ -19,197 +22,381 @@
                 <button onclick="telaInstrucao()">Instruções</button>
             </ul>
         </nav>
-
         <div class="voltar">
             <a href="../Site.html">Sair</a>
         </div>
     </aside>
-
-    <section class="area-jogo" id="area_jogo">
-        <h1>Cassino Bowser</h1>
-        <div class="game">
-        <div class="slot"><img id="img1" src="../elementos/flower.png" class="power-up"></div>
-        <div class="slot"><img id="img2" src="../elementos/murshroom.png" class="power-up"></div>
-        <div class="slot"><img id="img3" src="../elementos/star.png" class="power-up"></div>
+    <section id="jogo_" class="jogo">
+        <div class="versus" id="versusFundo">
+            <button class="comecar" onclick="abrir()">COMEÇAR QUIZ</button>
         </div>
-        <button onclick="jogar()" class="rodar">TENTAR A SORTE</button>
-        <div id="resultado"></div>
-    </section>
+        <!-- Conteúdo do Quiz -->
+        <div class="quiz">
+            <!-- <div id="espaco_tempo" class="tempo-jogo">
+               TEMPO <div id="tempo" class="numero"></div>
+            </div> -->
 
+            <div id="infoQuestao">
+                <span>Fase atual: <span id="spanNumeroDaQuestaoAtual"></span> de 
+                    <span id="qtdQuestoes"></span> fases.</span>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual">
+                <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+
+            <div id="infoAlternativas">
+                <span><em>Escolha uma opção dentre as abaixo:</em></span>
+            </div>
+
+            <div id="opcoes" class="flex-colunar padding-8">
+
+                <div class="fila1-opcoes">
+                    <span>
+                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                    </span>
+                    <span>
+                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                    </span>
+                </div>
+
+                <div class="fila2-opcoes">
+                    <span>
+                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                    </span>
+                    <span>
+                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="fila-botoes">
+                <button class="botao-quiz" onclick="submeter()">Submeter</button>
+                <button class="botao-quiz" onclick="avancar()">Avançar!</button>
+            </div>
+            
+        </div>     
+         <div class="mario-bowser">
+                <div class="mario" id="mario_" ><img id="imgMario" src="../elementos/grande.png"></div>
+                <div class="bowser" id="bowser_" ><img src="../elementos/faceBowser.png"></div>
+            </div>
+    </section>
     <section class="pontuacao-geral" id="pontuacao_geral">
         <div class="pontuacao">
             <div class="titulo-topo">
-                <h1 class="titulo-pontuacao">Estatísticas:</h1>
+                <h1 class="titulo-pontuacao">Estatísticas: <div id="rank"></div></h1>
             </div>
-            <div class="pontuação">
-                <h1>Pontuação Total: <div id="pontuação_total"></div>
-                </h1>
-                <h3>Fase 1: <div id="pontuação_fase1"></div>
-                </h3>
-                <h3>Fase 2: <div id="pontuação_fase2"></div>
-                </h3>
-                <h3>Fase 3: <div id="pontuação_fase3"></div>
-                </h3>
+            <div class="resultados">
+                <h2>Pontuação Total: <div id="pontuação_total"></div></h2>
+                <h3>Fase 1: <div id="pontuação_fase1"></div></h3>
+                <h3>Fase 2: <div id="pontuação_fase2"></div></h3>
+                <h3>Fase 3: <div id="pontuação_fase3"></div></h3>
                 <div class="dash">DESEMPENHO:
-                   <canvas id="barra"></canvas>
+                    <canvas id="barra"></canvas>
                 </div>
             </div>
         </div>
-        <div class="cartas_combinadas">
-            <div id="cartas_combinadas"></div>
+
+        <div class="kpi">
+        <h2>Vidas do Mario:</h2>
+        <div id="estadoMario">
+            <img id="vida_Mario" class="vidaMario" src="../elementos/grande.png">
         </div>
-      
-    </section>
+        
+        <div class="rosca-style">
+            <canvas id="rosca"></canvas>
+        </div>
+        
 
+        </div>
+    </section>
+    
     <section class="instrucoes">
-        <h1>Como jogar?</h1>
-
+        
     </section>
+
+    <!--Trilhas sonoras de fundo -->
+    <audio id="tocar" src="../audio/musicaBowser.mp3"></audio>
+    <audio id="dash" src="../audio/dash.mp3"></audio>
+    <audio id="instru" src="../audio/intstrucao.mp3"></audio>
+    <audio id="ganhou" src="../audio/conclui.mp3"></audio>
+    <audio id="acertou" src="../audio/acertou.mp3"></audio>
+    <audio id="gameover" src="../audio/52. Game Over.mp3"></audio>
+    <audio id="errou" src="../audio/SMW_Power_Down.oga"></audio>
+    <audio id="morreu" src="../audio/dano.mp3"></audio>
 
 </body>
-
 </html>
-
 <script>
-    var divJogo = document.getElementById("area_jogo");
-    var divPontuacao = document.getElementById("pontuacao_geral");
-    var divInstrucoes = document.querySelector(".instrucoes");
+    var btnSubmeter = document.querySelector('button[onclick="submeter()"]')
+    var btnProx = document.querySelector('button[onclick="avancar()"]')
 
-   var lista = [
-        "../elementos/flower.png",
-        "../elementos/murshroom.png", 
-        "../elementos/star.png"
-    ];
-    
-    var intervalo;
+    var divVersus = document.getElementById("versusFundo")
+    var divJogo = document.getElementById("jogo_")
+    var divPontuacao = document.getElementById("pontuacao_geral")
+    var divInstrucoes = document.querySelector(".instrucoes")
+    var divIniciar = document.getElementById('versusFundo')
+    var divQuiz = document.querySelector('.quiz')
+    var divMarioBowser = document.querySelector('.mario-bowser')
 
-    function jogar() {
-        var botao = document.querySelector('.rodar');
-        var divRes = document.getElementById('resultado');
-        
-        botao.disabled = true;
-        divRes.innerHTML = "Rodando...";
-        divRes.style.fontSize = "24px"
+    // Trilha sonora
+    var tocar = document.getElementById('tocar')
+    var dash = document.getElementById('dash')
+    var instru = document.getElementById('instru')
+    var acerto = document.getElementById('acertou')
+    var ganhou = document.getElementById('ganhou')
+    var gameover = document.getElementById("gameover")
+    var errou = document.getElementById("errou")
+    var morreu = document.getElementById("morreu")
 
-        intervalo = setInterval(function() {
-        
-            document.getElementById('img1').src = lista[Math.floor(Math.random() * 3)];
-            document.getElementById('img2').src = lista[Math.floor(Math.random() * 3)];
-            document.getElementById('img3').src = lista[Math.floor(Math.random() * 3)];
-        }, 100); 
+  
 
-        setTimeout(function() {
-            pararRoleta();
-        }, 2000); 
+    divIniciar.style.display = "none"
+    divJogo.style.display = "flex"
+    divVersus.style.display = "flex"
+    divQuiz.style.display = 'none'
+    divInstrucoes.style.display = 'none'
+    divMarioBowser.style.display = 'none'
+
+     var vidas = 2
+
+    //Quiz
+    let listaDeQuestoes = [
+        {
+            pergunta: "De quem o Bowser detesta?",
+            alternativaA: "Peach",
+            alternativaB: "Mario",
+            alternativaC: "Goomba",
+            alternativaD: "Yoshi",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Quem o Bowser sempre sequestra?",
+            alternativaA: "Daysi",
+            alternativaB: "Birdo",
+            alternativaC: "Peach",
+            alternativaD: "Koopa",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Quantos castelos Bowser tem?",
+            alternativaA: "Dez",
+            alternativaB: "1",
+            alternativaC: "0",
+            alternativaD: "Muitos...",
+            alternativaCorreta: "alternativaD"
+        }
+    ]
+
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes
+
+    function abrir(){
+        divIniciar.style.display = 'none'
+        divJogo.style.display= 'flex'
+        divQuiz.style.display = 'flex'
+        divMarioBowser.style.display= 'flex'
+
+        limparCoresBackgroundOpcoes();
+        desmarcarRadioButtons(); 
+
+        tocar.play();
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+
+        vidas =2
+        numeroDaQuestaoAtual = 0;
+        pontuacaoFinal = 0;
+
+        document.getElementById("imgMario").src="../elementos/grande.png";
+
     }
-    function pararRoleta() {
-        clearInterval(intervalo);
 
-        var n1 = Math.floor(Math.random() * 3);
-        var n2 = Math.floor(Math.random() * 3);
-        var n3 = Math.floor(Math.random() * 3);
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
 
-        document.getElementById('img1').src = lista[n1];
-        document.getElementById('img2').src = lista[n2];
-        document.getElementById('img3').src = lista[n3];
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
 
-        document.querySelector('.rodar').disabled = false;
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
+    }
 
-        var divRes = document.getElementById('resultado');
+    function submeter() {
+        const options = document.getElementsByName("option")
 
-        if (n1 == n2 && n2 == n3){
-            divRes.innerHTML = "PARABÉNS! VOCÊ GANHOU!";
-            divRes.style.color = "blue";
-            divRes.style.fontSize= "50px"
+        let selecionou = false
+        options.forEach(o => { if (o.checked) selecionou = true })
+
+        if (!selecionou) {
+            alert("Escolha uma alternativa.")
+            return
+        }
+
+        btnSubmeter.disabled = true
+        btnProx.disabled = false
+        habilitarAlternativas(false)
+
+        checarResposta()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+        const respostaCorreta = questaoAtual.alternativaCorreta
+        
+        const options = document.getElementsByName("option")
+
+        let idLabelCorreta = ""
+
+        options.forEach(opt => {
+            if (opt.value === respostaCorreta) {
+                idLabelCorreta = opt.labels[0].id
+            }
+        })
+        options.forEach(opt => {
+            if (opt.checked && opt.value === respostaCorreta) {
+                document.getElementById(idLabelCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal+= 100;
+                acerto.play();
+            }
+            else if (opt.checked && opt.value !== respostaCorreta){
+                document.getElementById(opt.labels[0].id).classList.add("text-danger-with-bg")
+                document.getElementById(idLabelCorreta).classList.add("text-success-with-bg")
+                errou.play();
+                vidas--
+                if(vidas == 1){
+                    document.getElementById("imgMario").src="../elementos/pequeno.png";
+                }
+                else if(vidas == 0){
+                    document.getElementById("imgMario").src="../elementos/gameover.png";
+                    setTimeout(function() {
+                    alert("BOWSER: HAHAHAHHAA VOCÊ PERDEU MARIO");
+                    finalizarJogo();
+                    morreu.play();
+                     }, 500);
+                     return
+                }
+                
+            }
+        })
+        numeroDaQuestaoAtual++
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+        limparCoresBackgroundOpcoes()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
-            divRes.innerHTML = "Não foi dessa vez...";
-            divRes.style.color = "red";
+            setTimeout(function() {
+                    alert("VOCÊ GANHOU!!");
+                    finalizarJogo();
+                     }, 500);
+            finalizarJogo()
+            ganhou.play()
+
         }
     }
-    function telaJogo() {
-        divJogo.style.display = 'flex';
-        divPontuacao.style.display = 'none';
-        divInstrucoes.style.display = 'none';
+
+    function habilitarAlternativas(habilitar) {
+        primeiraOpcao.disabled = !habilitar
+        segundaOpcao.disabled = !habilitar
+        terceiraOpcao.disabled = !habilitar
+        quartaOpcao.disabled = !habilitar
+    }
+
+    function desmarcarRadioButtons() {
+        document.getElementsByName("option").forEach(o => o.checked = false)
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        document.getElementsByName("option").forEach(opt => {
+            let id = opt.labels[0].id
+            document.getElementById(id).classList.remove("text-danger-with-bg")
+            document.getElementById(id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function finalizarJogo() {
+        tocar.pause();
+
+        divJogo.style.display = "none"
+        divQuiz.style.display = "none"
+        divInstrucoes.style.display = "none"
+        divPontuacao.style.display = "flex"
+
+        atualizarMario();
+    }
+
+    function atualizarMario(){
+        console.log("Atualizando Mario na Dash. Vidas restantes:", vidas);
+        var EstadoMario = document.getElementById("vida_Mario")
+
+        if( vidas == 2){
+            EstadoMario.src = "../elementos/grande.png";
+        }        
+        else if (vidas == 1){
+            EstadoMario.src = "../elementos/pequeno.png"
+        }
+        else{
+            EstadoMario.src = "../elementos/gameover.png"
+        }
+    }
+
+    /* Telas */
+    function telaJogo(){
+
+        divJogo.style.display = 'flex'
+        divVersus.style.display = "flex"
+        divPontuacao.style.display = 'none'
+        divInstrucoes.style.display = 'none'
+        divQuiz.style.display = "none"
+        divMarioBowser.style.display = 'none'
+
+        acerto.play()
+        instru.pause();
+        tocar.pause();
+        dash.pause();
+    
     }
     function telaPontuacao() {
-        divJogo.style.display = 'none';
-        divPontuacao.style.display = 'flex';
-        divInstrucoes.style.display = 'none';
+        divJogo.style.display = 'none'
+        divPontuacao.style.display = 'flex'
+        divInstrucoes.style.display = 'none'
+        
+        instru.pause();
+        tocar.pause();
+        dash.play();
+
+        atualizarMario();
     }
     function telaInstrucao() {
-        divJogo.style.display = 'none';
-        divPontuacao.style.display = 'none';
-        divInstrucoes.style.display = 'flex';
-    }
+        divJogo.style.display = 'none'
+        divPontuacao.style.display = 'none'
+        divInstrucoes.style.display = 'flex'
 
-    function obterDados() {
-        // Aqui seria a função que obteria os dados do banco de dados
-        // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
-
-        // fetch('/obterDados')
-        // .then(function(response){
-        //   return response.json();
-        // })
-        // .then(function(data){
-        //   plotarGraficoLinha(data);
-        //   plotarGraficoBarra(data);
-        // })
-        // .catch(function(err){
-        //   console.log(err);
-        // })
-
-        // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-        var dados = [{
-            jogador: 'Rodada 1',
-            votos: 10
-        },
-        {
-            jogador: 'Rodada 2',
-            votos: 20
-        },
-        {
-            jogador: 'Rodada 3',
-            votos: 25
-        },
-        {
-            jogador: 'TOTAL',
-            votos: 55
-        }]
-
-        // Chamando a função para plotar o gráfico de barra com os dados
-        plotarGraficoBarra(dados)
-    }
-
-    function plotarGraficoBarra(dados) {
-
-        var votos = [];
-        var jogadores = [];
-
-        // Preenchendo os arrays com os dados
-        for (var i = 0; i < dados.length; i++) {
-            votos.push(dados[i].votos);
-            jogadores.push(dados[i].jogador);
-        }
-
-        // Capturando o elemento canvas pelo id 
-        var ctx = document.getElementById('barra').getContext('2d');
-        // Criando o gráfico de barra usando o Chart.js
-        var myChart = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfico: barra
-            data: { // Dados para o gráfico
-                labels: jogadores, // Rótulos no eixo X
-                datasets: [{
-                    label: 'Votos', // Nome do conjunto de dados
-                    data: votos, // Dados dos votos
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)', // Cor da borda das barras
-                    ],
-                    borderWidth: 1 // Largura da borda das barras
-                }]
-            },
-        });
+        dash.pause();
+        instru.play();
+        tocar.pause();
     }
 </script>

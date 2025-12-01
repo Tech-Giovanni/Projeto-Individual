@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
@@ -44,7 +43,7 @@
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
                     <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                   <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                 </span>
                 <span>
                     <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
@@ -74,7 +73,6 @@
 </html>
 <script>
     const listaDeQuestoes = [
-
         {
             pergunta: "Qual mês tem 30 dias?",
             alternativaA: "Janeiro",
@@ -272,7 +270,6 @@
         }
 
         textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
         document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./jogo copy.css">
+    <script src="../js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Jogo da Memória</title>
+</head>
+
+<body>
+    <aside class="barra-jogo">
+        <nav class="topicos">
+            <ul class="indices">
+                <button onclick="telaJogo()">Jogo</button>
+                <button onclick="telaPontuacao()">Pontuação</button>
+                <button onclick="telaInstrucao()">Instruções</button>
+            </ul>
+        </nav>
+
+        <div class="voltar">
+            <a href="../Site.html">Sair</a>
+        </div>
+    </aside>
+
+    <section class="area-jogo" id="area_jogo">
+        <h1>Memória Bowser</h1>
+        <div class="game">
+        <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_yoshi.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_yoshi.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_peach.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_peach.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_bowser.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_bowser.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_toad.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+  <div class="memory-card">
+    <img class="front-face" src="../elementos/carta_virada_toad.png">
+    <img class="back-face" src="../elementos/cartaBowser.png">
+  </div>
+   <button class="botao-embaralhar" onclick="embaralhar()" id="botao_embaralhar">Embaralhar</button>
+  </div>
+ 
+    </section>
+    <section class="pontuacao-geral" id="pontuacao_geral">
+        <div class="pontuacao">
+            <div class="titulo-topo">
+                <h1 class="titulo-pontuacao">Estatísticas:</h1>
+            </div>
+            <div class="pontuação">
+                <h1>Pontuação Total: <div id="pontuação_total"></div>
+                </h1>
+                <h3>Fase 1: <div id="pontuação_fase1"></div>
+                </h3>
+                <h3>Fase 2: <div id="pontuação_fase2"></div>
+                </h3>
+                <h3>Fase 3: <div id="pontuação_fase3"></div>
+                </h3>
+                <div class="dash">DESEMPENHO:
+                   <canvas id="barra"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="cartas_combinadas">
+            <div id="cartas_combinadas"></div>
+        </div>
+      
+    </section>
+
+    <section class="instrucoes">
+        <h1>Como jogar?</h1>
+    
+    </section>
+</body>
+</html>
+
+<script>
+    var divJogo = document.getElementById("area_jogo");
+    var divPontuacao = document.getElementById("pontuacao_geral");
+    var divInstrucoes = document.querySelector(".instrucoes");
+
+    divJogo.style.display = "none";
+    divPontuacao.style.display = "none";
+    divInstrucoes.style.display = "flex";
+
+    var cards = document.querySelectorAll('.memory-card');
+
+    function flipCard() {
+    this.classList.toggle('flip');
+    }
+
+    cards.forEach(card => card.addEventListener('click', flipCard));
+
+    /*Jogo da Memória Lógica*/
+    var cartas = document.querySelectorAll(".memory-card");
+
+var primeiraCarta = null;
+var segundaCarta = null;
+var trava = false;
+
+for (var i = 0; i < cartas.length; i++) {
+    cartas[i].addEventListener("click", virarCarta);
+}
+
+function virarCarta() {
+
+    if (trava == true) {
+        return;
+    }
+    if (this == primeiraCarta) {
+        return;
+    }
+    this.classList.add("flip");
+    if (primeiraCarta == null) {
+        primeiraCarta = this;
+        return;
+    }
+    segundaCarta = this;
+    compararCartas();
+}
+
+function compararCartas() {
+
+    var primeiraImg = primeiraCarta.querySelector(".front-face").src;
+    var segundaImg = segundaCarta.querySelector(".front-face").src;
+
+    if (primeiraImg == segundaImg) {
+        desativarCartas();
+    } else {
+        desvirarCartas();
+    }
+}
+
+function desativarCartas() {
+    primeiraCarta.removeEventListener("click", virarCarta);
+    segundaCarta.removeEventListener("click", virarCarta);
+
+    primeiraCarta = null;
+    segundaCarta = null;
+}
+
+function desvirarCartas() {
+    trava = true;
+    setTimeout(function() {
+        primeiraCarta.classList.remove("flip");
+        segundaCarta.classList.remove("flip");
+
+        primeiraCarta = null;
+        segundaCarta = null;
+
+        trava = false;
+    }, 1000);
+}
+
+    var ListaFaceCarta = [
+        '../elementos/carta-virada-toad.png',
+        '../elementos/carta-virada-peach.png',
+        '../elementos/carta-virada-yoshi.png',
+        '../elementos/carta-virada-bowser.png'
+    ];
+
+    function embaralhar(){
+        var botao_embaralhar = getElementById('')
+
+        botao_embaralhar.disabled = true;
+    }
+    function telaJogo() {
+        divJogo.style.display = 'flex';
+        divPontuacao.style.display = 'none';
+        divInstrucoes.style.display = 'none';
+    }
+    function telaPontuacao() {
+        divJogo.style.display = 'none';
+        divPontuacao.style.display = 'flex';
+        divInstrucoes.style.display = 'none';
+    }
+    function telaInstrucao() {
+        divJogo.style.display = 'none';
+        divPontuacao.style.display = 'none';
+        divInstrucoes.style.display = 'flex';
+    }
+</script>

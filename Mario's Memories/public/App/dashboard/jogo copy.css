@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+:root {
+  --preto: #000000;
+  --azul: #115d7b;
+  --amarelo: #FBD000;
+  --amarelo-fundo: #8c770f;
+  --vermelho: #81211f;
+  --verde: #306732;
+}
+body {
+    background-image: url(../img/fundo\ mario\ 3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    height: 100vh; 
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    flex-direction: row;
+}
+.area-jogo {
+    display: flex;
+
+}
+/*Menu do lado*/
+.barra-jogo {
+    background-color: var(--vermelho);
+    width:350px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+}
+.indices {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.indices button{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    width: 200px;
+    height: 100px;
+    background: none;
+    border: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.indices button:hover {
+    color: var(--amarelo);
+    transform: scale(1.5);
+    transition: 0.2s;
+}
+
+.voltar a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    margin-top: 50px;
+    display: flex;
+}
+/*estilização aréa do jogo*/
+.area-jogo {
+    background-color: white;
+    border: 5px solid #000;
+    border-radius: 20px;
+    text-align: center;
+    flex: 1;
+    width: 400px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+}
+/*Jogo*/
+.game {
+  width: 840px;
+  height: 640px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px; 
+  perspective: 1000px;
+}
+.memory-card {
+  width: 50%;
+  height: 50%;
+  position: relative;
+  transform: scale(1);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform .5s;
+}
+.memory-card:active{
+    transform: scale(0.98);
+    transition: transform .2s;
+}
+.memory-card.flip{
+    transform: rotateX(180deg);
+}
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 3px;
+  backface-visibility: hidden;
+}
+.front-face{
+    transform: rotateX(180deg);
+}
+
+.botao-embaralhar{
+    background-color: var(--vermelho);
+    color: white;
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    bottom: 30px;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+}
+/*Estatísticas*/
+.pontuacao-geral{
+    display: none;
+    background-color: white;
+    border-radius: 50px;
+    flex: 1;
+    margin: 50px;
+}
+.pontuacao{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+.pontuação{
+    display: flex;
+    align-items: flex-start;
+    padding-left: 5%;
+    font-size: 15px;
+    flex-direction: column;
+}
+.pontuação h3{
+    font-size: 20px;
+}
+.titulo-pontuacao h1{
+    margin: 0px;
+    padding: 10px;    
+}
+/*Gráfico*/
+#barra{
+    width: 550px;
+    position: fixed;
+}
+/*Section Instruções*/
+.instrucoes {
+    display: none;
+    background-color: white;
+    border-radius: 50px;
+    flex: 1;
+    margin: 50px;
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+}

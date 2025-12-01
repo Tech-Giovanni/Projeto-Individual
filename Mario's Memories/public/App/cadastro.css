@@ -78,7 +78,7 @@ button{
     transition: transform ease-in-out;
 }
 button:hover {
-    background-image: url(../App/elementos/Button\ CadastrarFrame.png);
+    background-image: url(../App/elementos/BtnCadastrarFrame.png);
     transform: scale(1.05);
 }
 .clique{

@@ -19,7 +19,7 @@
     <input type="text" id="input_email" placeholder="Email"> <br><br>
     <input type="password" id="input_senha" placeholder="Password"><br><br>
     
-    <button onclick="entrar()">Login?</button><br><br>
+    <button onclick="entrar()"></button><br><br>
 
     <div class="texto-cadastro">
         <span style="color: white;"> Não é cadastrado? </span>
@@ -42,6 +42,7 @@
             var emailVar = input_email.value;
             var senhaVar = input_senha.value;
 
+            
             fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -66,14 +67,17 @@
 
                     setTimeout(function () {
                         window.location = "/dashboard/jogo.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    }, 1000);
+                    
                 });
 
             } else {
-
+                if(emailVar == "" || senhaVar == ""){
+                alert("Email ou senha não preenchido! Por favor preencha!")
+                }else{
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                alert("Email ou senha INVÁLIDOS! Insira corretamente!")
+                }
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);
