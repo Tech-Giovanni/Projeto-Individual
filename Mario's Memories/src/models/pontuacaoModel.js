@@ -25,16 +25,31 @@ function vidasSobras(idUsuario){
     return database.executar(query);
 }
 function cadastrarPontuacao(fase1, fase2, fase3, fk_usuario) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
+   
+    console.log("ACESSEI O PONTUACAO MODEL \n \n\t\t >> function cadastrarPontuacao():", fase1, fase2, fase3, fk_usuario);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO partidas (fase1_pontos, fase2_pontos, fase3_pontos) VALUES ('${fase1}', '${fase2}', '${fase3}','${fk_usuario});
+        INSERT INTO partidas (fase1_pontos, fase2_pontos, fase3_pontos, fk_usuario) 
+        VALUES ('${fase1}', '${fase2}', '${fase3}', '${fk_usuario}');
     `;
+    
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-module.exports = { obterDados, vidasSobras, cadastrarPontuacao };
+function rank(){
 
+    var query = `
+        select u.nome, count(p.id_partidas) as total_partidas
+        from usuario as u join partidas as p
+        on u.id_usuario = p.fk_usuario
+        group by u.nome
+        order by total_partidas desc
+        limit 3;
+    `
+    console.log("Executando a instrução SQL: \n" + query);
+    return database.executar(query);
+}
+
+
+module.exports = { obterDados, vidasSobras, cadastrarPontuacao, rank };

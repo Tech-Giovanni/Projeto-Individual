@@ -18,9 +18,9 @@
         <div>OLÁ,<div id="nome_logado" style="color: #FBD000;"></div> </div>
         <nav class="topicos">
             <ul class="indices">
-                <button onclick="telaJogo()">Jogo</button>
-                <button onclick="telaPontuacao(), vidasSobras()">Pontuação</button>
-                <button onclick="telaInstrucao()">Instruções</button>
+                <button onclick="telaJogo(), vidasSobras(), plotarGraficoBarra() ">Jogo</button>
+                <button onclick="telaPontuacao(), vidasSobras(), plotarGraficoBarra() ">Pontuação</button>
+                <button onclick="telaInstrucao(),vidasSobras(), plotarGraficoBarra() ">Instruções</button>
             </ul>
         </nav>
         <div class="voltar">
@@ -97,7 +97,7 @@
                 <h3>Fase 1: <p id="pontuacao_fase1"></p></h3>
                 <h3>Fase 2: <p id="pontuacao_fase2"></p></h3>
                 <h3>Fase 3: <p id="pontuacao_fase3"></p></h3>
-                <div class="dash">DESEMPENHO:
+                <div class="dash">Rank:
                     <canvas id="barra"></canvas>
                 </div>
             </div>
@@ -136,6 +136,16 @@
 <!-- <script src="../js/dash.js"></script> -->
 <script>
 
+    window.onload = function(){
+        rank();
+        carregarDash();
+        vidasSobras();
+        
+        
+    }
+
+
+
     function vidasSobras() {
     var idUsuariov = sessionStorage.ID_USUARIO;
 
@@ -170,16 +180,16 @@
     var morreu = document.getElementById("morreu")
 
 
-    function cadastrarPontuacao() {
-        var fase1 = pontuacaoFinal;
-        var fase2 = pontuacaoFinal;
-        var fase3 = pontuacaoFinal;
+   function cadastrarPontuacao() {
+        var fase1 = pontuacaofase1;
+        var fase2 = pontuacaofase2;
+        var fase3 = pontuacaofase3;
 
         var fk_usuario = sessionStorage.ID_USUARIO
 
        
 
-        fetch("/partidas/cadastrarPontuacao", {
+        fetch("/pontuacoes/cadastrarPontuacao", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -197,11 +207,11 @@
                 if (resposta.ok) {
 
                     alert(
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                        "Cadastro realizado com sucesso! ");
 
                                    
                 } else {
-                    throw `Houve um erro ao tentar realizar o cadastro PONTUACAO! ${fase1} ,  ${fase2} ,  ${fase3} ,  ${fk_usuario}  `;
+                    throw `Houve um erro ao tentar realizar o cadastro PONTUACAO!  `;
                    
                 }
             })
@@ -257,6 +267,9 @@
 
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
+    let pontuacaofase1 = 0;
+    let pontuacaofase2 = 0;
+    let pontuacaofase3 = 0;
     let quantidadeDeQuestoes = listaDeQuestoes.length
 
     document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes
@@ -333,7 +346,18 @@
         options.forEach(opt => {
             if (opt.checked && opt.value === respostaCorreta) {
                 document.getElementById(idLabelCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal+= 100;
+                if(pontuacaoFinal == 0){
+                    pontuacaofase1 += 100
+                    pontuacaoFinal++
+                } 
+                else if(pontuacaoFinal == 1){
+                    pontuacaofase2 += 100
+                    pontuacaoFinal++
+                }else if(pontuacaoFinal == 2){
+                    pontuacaofase3 += 100
+                    pontuacaoFinal++
+                } 
+
                 acerto.play();
             }
             else if (opt.checked && opt.value !== respostaCorreta){

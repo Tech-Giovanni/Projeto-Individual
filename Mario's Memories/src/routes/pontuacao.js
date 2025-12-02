@@ -12,7 +12,11 @@ router.get("/vidasSobras/:idUsuario", function(req, res){
 });
 
 router.post("/cadastrarPontuacao", function (req, res) {
-    pontuacaoController.cadastrarPotuacao(req, res);
+    pontuacaoController.cadastrarPontuacao(req, res);
+})
+
+router.get("/rank", function (req, res) {
+    pontuacaoController.rank(req, res);
 })
 
 module.exports = router;

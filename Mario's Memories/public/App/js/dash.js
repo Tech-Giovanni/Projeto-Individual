@@ -56,28 +56,48 @@ function vidasSobras() {
 
 
 
-function plotarGraficoBarra(dados) {
+function rank(dados) {
 
-    var pontos = [];
-    var fase = [];
+    fetch('/pontuacoes/rank').then(function(response){
+        if(response.ok){
+            response.json().then(function(resposta){
+                console.log("Dados Recebidos rank")
+                plotarGraficoBarra(resposta)
+            }
+        )
 
-    for (var i = 0; i < dados.length; i++) {
-        pontos.push(dados[i].pontos);
-        fase.push(dados[i].fase);
+        }else{
+            console.log("erro rank")
+        }
+
     }
 
+)
+}
+
+    function plotarGraficoBarra(dados){
+
+    var nomes = [];
+    var partidas = [];
+
+    for (var i = 0; i < dados.length; i++) {
+        nomes.push(dados[i].nome);
+        partidas.push(dados[i].total_partidas);
+    }
    
     var ctx = document.getElementById('barra').getContext('2d');
     
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'bar', 
         data: { 
-            labels: fase, 
+            labels: nomes, 
             datasets: [{
-                label: 'Pontos', 
-                data: pontos, 
+                label: 'Total Partidas', 
+                data: partidas, 
                 backgroundColor: [
                     '#E52521',
+                    '#306732',
+                    '#115d7b'
                 ],
                 borderColor: [
                     '#000000', 

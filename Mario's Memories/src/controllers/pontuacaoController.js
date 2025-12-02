@@ -36,7 +36,7 @@ function vidasSobras(req, res) {
 
 
 
-function cadastrarPotuacao(req, res) {
+function cadastrarPontuacao(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var fase1 = req.body.fase1Server;
     var fase2 = req.body.fase2Server;
@@ -63,6 +63,26 @@ function cadastrarPotuacao(req, res) {
             );
     }
 
+    function rank(req, res) {
 
-module.exports = { obterDados, vidasSobras ,cadastrarPotuacao};
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+
+        pontuacaoModel.rank()
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+module.exports = { obterDados, vidasSobras ,cadastrarPontuacao, rank};
 
