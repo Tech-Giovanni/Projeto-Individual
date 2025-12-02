@@ -42,27 +42,13 @@ function obterDados() {
 }
 
 function vidasSobras() {
-    var idUsuario = sessionStorage.ID_USUARIO;
+    var idUsuariov = sessionStorage.ID_USUARIO;
 
-    fetch(`/pontuacoes/vidasSobras/${idUsuario}`)
+    fetch(`/pontuacoes/vidasSobras/${idUsuariov}`)
         .then(r => r.json())
         .then(data => {
-            console.log("Dados recebidos:", data);
-
-            var dados = [
-                { pontos1: data.fase1 },
-                { pontos2: data.fase2 },
-                { pontos3: data.fase3 }
-            ];
-
-            plotarGraficoBarra(dados);
-
-            let total = (data.fase1_pontos + data.fase2_pontos + data.fase3_pontos)
-            
-            document.getElementById("pontuacao_total").innerHTML = total;
-            document.getElementById("pontuacao_fase1").innerHTML = data.fase1_pontos;
-            document.getElementById("pontuacao_fase2").innerHTML = data.fase2_pontos;
-            document.getElementById("pontuacao_fase3").innerHTML = data.fase3_pontos;
+            console.log("Dados recebidos vidas:", data);
+            document.getElementById("vidas_sobrando").innerHTML = data.vidas_restantes;
         })
         .catch(err => console.log(err));
 }

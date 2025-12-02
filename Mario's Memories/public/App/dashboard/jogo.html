@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="./jogo.css">
     <script src="../js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/dash.js"></script>
+    <script src="../js/dash.js">
+    </script>
 
     <title>Quiz Mario</title>
 </head>
@@ -18,7 +19,7 @@
         <nav class="topicos">
             <ul class="indices">
                 <button onclick="telaJogo()">Jogo</button>
-                <button onclick="telaPontuacao()">Pontuação</button>
+                <button onclick="telaPontuacao(), vidasSobras()">Pontuação</button>
                 <button onclick="telaInstrucao()">Instruções</button>
             </ul>
         </nav>
@@ -93,9 +94,9 @@
             </div>
             <div class="resultados">
                 <h2>Pontuação Total: <div id="pontuacao_total"></div></h2>
-                <h3>Fase 1: <div id="pontuacao_fase1"></div></h3>
-                <h3>Fase 2: <div id="pontuacao_fase2"></div></h3>
-                <h3>Fase 3: <div id="pontuacao_fase3"></div></h3>
+                <h3>Fase 1: <p id="pontuacao_fase1"></p></h3>
+                <h3>Fase 2: <p id="pontuacao_fase2"></p></h3>
+                <h3>Fase 3: <p id="pontuacao_fase3"></p></h3>
                 <div class="dash">DESEMPENHO:
                     <canvas id="barra"></canvas>
                 </div>
@@ -103,8 +104,8 @@
         </div>
 
         <div class="kpi">
-        <h2>Vidas do Mario:</h2>
-        <div id="estadoMario">
+        <h2>Vidas do Mario: <p id="vidas_sobrando"></p></h2>
+        <div>
             <img id="vida_Mario" class="vidaMario" src="../elementos/grande.png">
         </div>
         
@@ -132,8 +133,21 @@
 
 </body>
 </html>
-<script src="../js//dash.js"></script>
+<!-- <script src="../js/dash.js"></script> -->
 <script>
+
+    function vidasSobras() {
+    var idUsuariov = sessionStorage.ID_USUARIO;
+
+    fetch(`/pontuacoes/vidasSobras/${idUsuariov}`)
+        .then(r => r.json())
+        .then(data => {
+            console.log("Dados recebidos vidas:", data);
+            document.getElementById("vidas_sobrando").innerHTML = data.vidas_restantes;
+        })
+        .catch(err => console.log(err));
+}
+ 
     var btnSubmeter = document.querySelector('button[onclick="submeter()"]')
     var btnProx = document.querySelector('button[onclick="avancar()"]')
 
@@ -154,6 +168,50 @@
     var gameover = document.getElementById("gameover")
     var errou = document.getElementById("errou")
     var morreu = document.getElementById("morreu")
+
+
+    function cadastrarPontuacao() {
+        var fase1 = pontuacaoFinal;
+        var fase2 = pontuacaoFinal;
+        var fase3 = pontuacaoFinal;
+
+        var fk_usuario = sessionStorage.ID_USUARIO
+
+       
+
+        fetch("/partidas/cadastrarPontuacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              
+                fase1Server: fase1,
+                fase2Server: fase2,
+                fase3Server: fase3,
+                fk_usuarioServer: fk_usuario
+            }),
+        }).then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    alert(
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                                   
+                } else {
+                    throw `Houve um erro ao tentar realizar o cadastro PONTUACAO! ${fase1} ,  ${fase2} ,  ${fase3} ,  ${fk_usuario}  `;
+                   
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+               
+            });
+
+        return false;
+    }
 
   
     
@@ -313,6 +371,7 @@
         } else {
             setTimeout(function() {
                     alert("VOCÊ GANHOU!!");
+                    cadastrarPontuacao()
                     finalizarJogo();
                      }, 500);
             finalizarJogo()
