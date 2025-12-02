@@ -16,13 +16,13 @@
 <body onload="carregarDash()">
     <aside class="barra-jogo">
         <div>OLÁ,<div id="nome_logado" style="color: #FBD000;"></div> </div>
-        <nav class="topicos">
-            <ul class="indices">
-                <button onclick="telaJogo(), vidasSobras(), plotarGraficoBarra() ">Jogo</button>
-                <button onclick="telaPontuacao(), vidasSobras(), plotarGraficoBarra() ">Pontuação</button>
-                <button onclick="telaInstrucao(),vidasSobras(), plotarGraficoBarra() ">Instruções</button>
-            </ul>
-        </nav>
+        <ul class="indices">
+    <button onclick="telaJogo(); vidasSobras()">Jogo</button>
+    
+    <button onclick="telaPontuacao(); vidasSobras(); rank(); obterDados()">Pontuação</button>
+    
+    <button onclick="telaInstrucao(); vidasSobras()">Instruções</button>
+</ul>
         <div class="voltar">
             <a href="../Site.html">Sair</a>
         </div>
@@ -97,9 +97,9 @@
                 <h3>Fase 1: <p id="pontuacao_fase1"></p></h3>
                 <h3>Fase 2: <p id="pontuacao_fase2"></p></h3>
                 <h3>Fase 3: <p id="pontuacao_fase3"></p></h3>
-                <div class="dash">Rank:
+                <!-- <div class="dash">Rank:
                     <canvas id="barra"></canvas>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -109,9 +109,12 @@
             <img id="vida_Mario" class="vidaMario" src="../elementos/grande.png">
         </div>
         
-        <div class="rosca-style">
+        <!-- <div class="rosca-style">
             <canvas id="rosca"></canvas>
-        </div>
+        </div> -->
+        <div class="dash">Rank:
+                    <canvas id="barra"></canvas>
+                </div>
         
 
         </div>
@@ -121,7 +124,7 @@
         
     </section>
 
-    <!--Trilhas sonoras de fundo -->
+
     <audio id="tocar" src="../audio/musicaBowser.mp3"></audio>
     <audio id="dash" src="../audio/dash.mp3"></audio>
     <audio id="instru" src="../audio/intstrucao.mp3"></audio>
@@ -351,10 +354,10 @@
                     pontuacaoFinal++
                 } 
                 else if(pontuacaoFinal == 1){
-                    pontuacaofase2 += 100
+                    pontuacaofase2 += 150
                     pontuacaoFinal++
                 }else if(pontuacaoFinal == 2){
-                    pontuacaofase3 += 100
+                    pontuacaofase3 += 200
                     pontuacaoFinal++
                 } 
 
@@ -394,6 +397,7 @@
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             setTimeout(function() {
+                    telaPontuacao(); vidasSobras2(); rank(); obterDados()
                     alert("VOCÊ GANHOU!!");
                     cadastrarPontuacao()
                     finalizarJogo();
@@ -402,6 +406,10 @@
             ganhou.play()
 
         }
+    }
+
+    function vidasSobras2(){
+        document.getElementById('vidas_sobrando').innerHTML = vidas
     }
 
     function habilitarAlternativas(habilitar) {
