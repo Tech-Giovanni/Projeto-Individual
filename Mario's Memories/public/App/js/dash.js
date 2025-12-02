@@ -23,21 +23,52 @@ function obterDados() {
 
   
             var dados = [
-                { fase: 'Fase 1', pontos: data.fase1 },
-                { fase: 'Fase 2', pontos: data.fase2 },
-                { fase: 'Fase 3', pontos: data.fase3 }
+                { pontos1: data.fase1 },
+                { pontos2: data.fase2 },
+                { pontos3: data.fase3 }
             ];
 
             plotarGraficoBarra(dados);
 
+            let total = (data.fase1_pontos + data.fase2_pontos + data.fase3_pontos)
+
       
-            document.getElementById("pontuação_total").innerHTML = data.total;
-            document.getElementById("pontuação_fase1").innerHTML = data.fase1;
-            document.getElementById("pontuação_fase2").innerHTML = data.fase2;
-            document.getElementById("pontuação_fase3").innerHTML = data.fase3;
+            document.getElementById("pontuacao_total").innerHTML = total;
+            document.getElementById("pontuacao_fase1").innerHTML = data.fase1_pontos;
+            document.getElementById("pontuacao_fase2").innerHTML = data.fase2_pontos;
+            document.getElementById("pontuacao_fase3").innerHTML = data.fase3_pontos;
         })
         .catch(err => console.log(err));
 }
+
+function vidasSobras() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/pontuacoes/vidasSobras/${idUsuario}`)
+        .then(r => r.json())
+        .then(data => {
+            console.log("Dados recebidos:", data);
+
+            var dados = [
+                { pontos1: data.fase1 },
+                { pontos2: data.fase2 },
+                { pontos3: data.fase3 }
+            ];
+
+            plotarGraficoBarra(dados);
+
+            let total = (data.fase1_pontos + data.fase2_pontos + data.fase3_pontos)
+            
+            document.getElementById("pontuacao_total").innerHTML = total;
+            document.getElementById("pontuacao_fase1").innerHTML = data.fase1_pontos;
+            document.getElementById("pontuacao_fase2").innerHTML = data.fase2_pontos;
+            document.getElementById("pontuacao_fase3").innerHTML = data.fase3_pontos;
+        })
+        .catch(err => console.log(err));
+}
+
+
+
 
 function plotarGraficoBarra(dados) {
 

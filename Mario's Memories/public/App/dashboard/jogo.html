@@ -89,12 +89,13 @@
         <div class="pontuacao">
             <div class="titulo-topo">
                 <h1 class="titulo-pontuacao">Estatísticas: <div id="rank"></div></h1>
+                
             </div>
             <div class="resultados">
-                <h2>Pontuação Total: <div id="pontuação_total"></div></h2>
-                <h3>Fase 1: <div id="pontuação_fase1"></div></h3>
-                <h3>Fase 2: <div id="pontuação_fase2"></div></h3>
-                <h3>Fase 3: <div id="pontuação_fase3"></div></h3>
+                <h2>Pontuação Total: <div id="pontuacao_total"></div></h2>
+                <h3>Fase 1: <div id="pontuacao_fase1"></div></h3>
+                <h3>Fase 2: <div id="pontuacao_fase2"></div></h3>
+                <h3>Fase 3: <div id="pontuacao_fase3"></div></h3>
                 <div class="dash">DESEMPENHO:
                     <canvas id="barra"></canvas>
                 </div>
@@ -131,6 +132,7 @@
 
 </body>
 </html>
+<script src="../js//dash.js"></script>
 <script>
     var btnSubmeter = document.querySelector('button[onclick="submeter()"]')
     var btnProx = document.querySelector('button[onclick="avancar()"]')
@@ -154,6 +156,7 @@
     var morreu = document.getElementById("morreu")
 
   
+    
 
     divIniciar.style.display = "none"
     divJogo.style.display = "flex"

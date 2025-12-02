@@ -3,19 +3,23 @@ var database = require("../database/config");
 function obterDados(idUsuario) {
 
     var query = `
-        SELECT 
-            pa.fase1_pontos AS fase1,
-            pa.fase2_pontos AS fase2,
-            pa.fase3_pontos AS fase3,
-            d.total_acertos AS acertos,
-            d.total_erros AS erros,
-            d.pontuacao_total AS total,
-            d.rank_jogo AS rank
-        FROM partidas pa
-        JOIN desempenho d ON d.fkPartidas = pa.idPartidas
-        WHERE pa.fkUsuario = ${idUsuario}
-        ORDER BY pa.idPartidas DESC
-        LIMIT 1;
+       select p.fase1_pontos,p.fase2_pontos,p.fase3_pontos 
+from usuario as u join partidas as p 
+on u.id_usuario = p.fk_usuario 
+where u.id_usuario = ${idUsuario} 
+order by p.id_partidas desc 
+limit 1;
+    `;
+
+    return database.executar(query);
+}
+
+function vidasSobras(idUsuario){
+
+    var query = ` 
+    select d.vidas_restantes from usuario as u
+    join desempenho as d on u.id_usuario = ${usuario}     
+    where u.id_usuario = 1 order by id_desempenho limit 1
     `;
 
     return database.executar(query);
