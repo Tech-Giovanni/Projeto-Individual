@@ -37,15 +37,13 @@ function vidasSobras(req, res) {
 
 
 function cadastrarPontuacao(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
     var fase1 = req.body.fase1Server;
     var fase2 = req.body.fase2Server;
     var fase3 = req.body.fase3Server;
     var fk_usuario = req.body.fk_usuarioServer
-    // Faça as validações dos valores
-  
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+  
         pontuacaoModel.cadastrarPontuacao(fase1, fase2, fase3, fk_usuario)
             .then(
                 function (resultado) {
@@ -65,7 +63,7 @@ function cadastrarPontuacao(req, res) {
 
     function rank(req, res) {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+
 
         pontuacaoModel.rank()
             .then(
