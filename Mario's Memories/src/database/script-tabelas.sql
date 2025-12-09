@@ -9,8 +9,9 @@ email VARCHAR(45),
 senha VARCHAR (45)
 );
 
-select * from partidas;
+select *from usuario;
 
+select * from partidas;
 
 select p.fase1_pontos,p.fase2_pontos,p.fase3_pontos 
 from usuario as u join partidas as p 
@@ -62,11 +63,9 @@ INSERT INTO partidas (fase1_pontos, fase2_pontos, fase3_pontos, fk_usuario) VALU
 (100, 200, 300, 2),
 (100, 200, 300, 1),
 (100, 200, 300, 3),
-(100, 100, 100, 1),
-(100, 200, 300, 5);
+(100, 100, 100, 1);
 
 select * from partidas;
-
 
 INSERT INTO desempenho (vidas_restantes, total_acertos, total_erros, pontuacao_total, fk_usuario) VALUES
 (2, 3, 0, 300, 1),
